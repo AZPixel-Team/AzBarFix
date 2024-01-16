@@ -46,7 +46,7 @@ public final class AzBarFix extends JavaPlugin implements Listener{
                 Player p = e.getKey();
                 BossBar b = e.getValue();
                 b.setProgress(0);
-                b.setTitle("h" + az.getBarHealth(p)
+                b.setTitle("@h" + az.getBarHealth(p)
                         + " f" + az.getBarFood(p)
                         + " a" + az.getBarArmor(p)
                         + " o" + az.getBarOxy(p)
@@ -69,7 +69,7 @@ public final class AzBarFix extends JavaPlugin implements Listener{
     }
 
     public void createBossBar(Player p) {
-        BossBar bb = Bukkit.createBossBar("h" + az.getBarHealth(p)
+        BossBar bb = Bukkit.createBossBar("@h" + az.getBarHealth(p)
                 + " f" + az.getBarFood(p)
                 + " a" + az.getBarArmor(p)
                 + " o" + az.getBarOxy(p)
