@@ -1,5 +1,6 @@
 package com.azpixel.misc;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
@@ -39,10 +40,10 @@ public class CustomExpansion extends PlaceholderExpansion {
             return "";
         }
         if (params.equals("maxhp"))
-            return String.valueOf(player.getMaxHealth());
+            return PlaceholderAPI.setPlaceholders(player,"%mmocore_max_health%");
 
         if (params.equals("currenthp"))
-            return String.valueOf(player.getHealth());
+            return PlaceholderAPI.setPlaceholders(player,"%mmocore_health%");
 
         if (params.equals("maxfood"))
             return String.valueOf(20);
@@ -61,6 +62,18 @@ public class CustomExpansion extends PlaceholderExpansion {
 
         if (params.equals("currentarmor"))
             return String.valueOf(player.getAttribute(Attribute.GENERIC_ARMOR).getValue());
+
+        if (params.equals("maxmana"))
+            return PlaceholderAPI.setPlaceholders(player,"%mmocore_stat_max_mana%");
+
+        if (params.equals("currentmana"))
+            return PlaceholderAPI.setPlaceholders(player,"%mmocore_mana%");
+
+        if (params.equals("maxstamina"))
+            return PlaceholderAPI.setPlaceholders(player,"%mmocore_stat_max_stamina%");
+
+        if (params.equals("currentstamina"))
+            return PlaceholderAPI.setPlaceholders(player,"%mmocore_stamina%");
         return null;
     }
 }

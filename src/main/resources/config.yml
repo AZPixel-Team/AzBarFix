@@ -4,6 +4,23 @@ Message:
   Console-commands: 'Youre not player'
   Test: "%azhotbar_maxhp%"
 
-HotBar:
-  HP:
-    Max: "%player_health%"
+#Please Dont change this
+AzHotBar:
+  Health:
+    Max: "%azhotbar_maxhp%"
+    Current: "%azhotbar_currenthp%"
+  Food:
+    Max: "%azhotbar_maxfood%"
+    Current: "%azhotbar_currentfood%"
+  Armor:
+    Max: "%azhotbar_maxarmor%"
+    Current: "%azhotbar_currentarmor%"
+  Oxy:
+    Max: "%azhotbar_maxoxy%"
+    Current: "%azhotbar_currentoxy%"
+  Mana:
+    Max: "%azhotbar_maxmana%"
+    Current: "%azhotbar_currentmana%"
+  Stamina:
+    Max: "%azhotbar_maxstamina%"
+    Current: "%azhotbar_currentstamina%"

@@ -1,5 +1,6 @@
 package com.azpixel;
 
+import com.azpixel.data.AzHotBar;
 import com.azpixel.listeners.PlayerChangeWorld;
 import com.azpixel.listeners.PlayerJoin;
 import com.azpixel.listeners.PlayerQuit;
@@ -23,10 +24,13 @@ public final class AzBarFix extends JavaPlugin implements Listener{
     private final Map<Player, BossBar> bb = new HashMap<>();
     private static AzBarFix instance;
 
+    private AzHotBar az;
+
     @Override
     public void onEnable() {
         new CustomExpansion().register();
         instance = this;
+        this.az = new AzHotBar();
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
         registerCommands("azbar",new AzBarCommand());
@@ -41,9 +45,15 @@ public final class AzBarFix extends JavaPlugin implements Listener{
             for (Map.Entry<Player, BossBar> e : this.bb.entrySet()){
                 Player p = e.getKey();
                 BossBar b = e.getValue();
-                b.setProgress(1.0D);
+                b.setProgress(0);
+                b.setTitle("h" + az.getBarHealth(p)
+                        + " f" + az.getBarFood(p)
+                        + " a" + az.getBarArmor(p)
+                        + " o" + az.getBarOxy(p)
+                        + " m" + az.getBarMana(p)
+                        + " s" + az.getBarStamina(p));
             }
-        }, 0, 10L);
+        }, 0, 5L);
     }
 
     private void registerCommands(String commandName, CommandExecutor executor){
@@ -59,7 +69,12 @@ public final class AzBarFix extends JavaPlugin implements Listener{
     }
 
     public void createBossBar(Player p) {
-        BossBar bb = Bukkit.createBossBar("VeryGay", BarColor.YELLOW, BarStyle.SOLID);
+        BossBar bb = Bukkit.createBossBar("h" + az.getBarHealth(p)
+                + " f" + az.getBarFood(p)
+                + " a" + az.getBarArmor(p)
+                + " o" + az.getBarOxy(p)
+                + " m" + az.getBarMana(p)
+                + " s" + az.getBarStamina(p),BarColor.WHITE,BarStyle.SOLID);
         bb.addPlayer(p);
         this.bb.put(p, bb);
         bb.setVisible(true);
