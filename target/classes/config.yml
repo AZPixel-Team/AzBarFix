@@ -1,0 +1,9 @@
+Message:
+  Wrong-Commands: 'Usage: /azbar reload'
+  Reload-Successful: 'Reload Successfully'
+  Console-commands: 'Youre not player'
+  Test: "%azhotbar_maxhp%"
+
+HotBar:
+  HP:
+    Max: "%player_health%"

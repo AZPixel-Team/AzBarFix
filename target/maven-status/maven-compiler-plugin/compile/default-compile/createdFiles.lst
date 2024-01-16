@@ -1,0 +1,7 @@
+com\azpixel\Listener\PlayerChangeWorld.class
+com\azpixel\data\VanillaBar.class
+com\azpixel\misc\CustomExpansion.class
+com\azpixel\Listener\PlayerQuit.class
+com\azpixel\Listener\PlayerJoin.class
+com\azpixel\commands\AzBarCommand.class
+com\azpixel\AzBarFix.class

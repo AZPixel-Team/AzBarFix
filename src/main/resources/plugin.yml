@@ -1,0 +1,17 @@
+name: AzBarFix
+version: '${project.version}'
+main: com.azpixel.AzBarFix
+api-version: '1.20'
+depend:
+  - Geyser-Spigot
+  - PlaceholderAPI
+author: ItzMintDzX (AzPixel-Team)
+commands:
+  azbar:
+    description: "AzPixel HotBar"
+    aliases:
+      - azb
+permissions:
+  azhotbar.admin:
+    description: "Permissions for azhotbar"
+    default: op
