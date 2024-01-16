@@ -1,8 +1,8 @@
 package com.azpixel;
 
-import com.azpixel.Listener.PlayerChangeWorld;
-import com.azpixel.Listener.PlayerJoin;
-import com.azpixel.Listener.PlayerQuit;
+import com.azpixel.listeners.PlayerChangeWorld;
+import com.azpixel.listeners.PlayerJoin;
+import com.azpixel.listeners.PlayerQuit;
 import com.azpixel.commands.AzBarCommand;
 import com.azpixel.misc.CustomExpansion;
 import org.bukkit.Bukkit;

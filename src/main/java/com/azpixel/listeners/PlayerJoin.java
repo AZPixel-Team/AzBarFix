@@ -1,16 +1,16 @@
-package com.azpixel.Listener;
+package com.azpixel.listeners;
 
 import com.azpixel.AzBarFix;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.geysermc.geyser.api.GeyserApi;
 
-public class PlayerQuit implements Listener {
+public class PlayerJoin implements Listener {
 
     @EventHandler
-    private void onQuit(PlayerQuitEvent e){
+    private void onJoin(PlayerJoinEvent e){
         if (GeyserApi.api().isBedrockPlayer(e.getPlayer().getUniqueId()))
-            AzBarFix.getInstance().removeBossBar(e.getPlayer());
+            AzBarFix.getInstance().createBossBar(e.getPlayer());
     }
 }

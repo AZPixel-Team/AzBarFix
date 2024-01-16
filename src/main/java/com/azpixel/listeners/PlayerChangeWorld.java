@@ -1,4 +1,4 @@
-package com.azpixel.Listener;
+package com.azpixel.listeners;
 
 import com.azpixel.AzBarFix;
 import org.bukkit.Bukkit;
