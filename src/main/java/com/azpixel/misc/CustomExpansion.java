@@ -1,5 +1,6 @@
 package com.azpixel.misc;
 
+import com.azpixel.data.AzHotBar;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.attribute.Attribute;
@@ -8,6 +9,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class CustomExpansion extends PlaceholderExpansion {
+
+    AzHotBar az = new AzHotBar();
 
     @Override
     public @NotNull String getIdentifier() {
@@ -40,10 +43,10 @@ public class CustomExpansion extends PlaceholderExpansion {
             return "";
         }
         if (params.equals("maxhp"))
-            return PlaceholderAPI.setPlaceholders(player,"%mmocore_max_health%");
+            return String.valueOf(player.getMaxHealth());
 
         if (params.equals("currenthp"))
-            return PlaceholderAPI.setPlaceholders(player,"%mmocore_health%");
+            return String.valueOf(player.getHealth());
 
         if (params.equals("maxfood"))
             return String.valueOf(20);
@@ -74,6 +77,25 @@ public class CustomExpansion extends PlaceholderExpansion {
 
         if (params.equals("currentstamina"))
             return PlaceholderAPI.setPlaceholders(player,"%mmocore_stamina%");
+
+        //Main Expansion
+        if (params.equals("hp"))
+            return az.getBarHealth(player);
+
+        if (params.equals("food"))
+            return az.getBarFood(player);
+
+        if (params.equals("oxy"))
+            return az.getBarOxy(player);
+
+        if (params.equals("armor"))
+            return az.getBarArmor(player);
+
+        if (params.equals("mana"))
+            return az.getBarMana(player);
+
+        if (params.equals("stamina"))
+            return az.getBarStamina(player);
         return null;
     }
 }

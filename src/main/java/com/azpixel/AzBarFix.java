@@ -6,6 +6,7 @@ import com.azpixel.listeners.PlayerJoin;
 import com.azpixel.listeners.PlayerQuit;
 import com.azpixel.commands.AzBarCommand;
 import com.azpixel.misc.CustomExpansion;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
@@ -46,12 +47,7 @@ public final class AzBarFix extends JavaPlugin implements Listener{
                 Player p = e.getKey();
                 BossBar b = e.getValue();
                 b.setProgress(0);
-                b.setTitle("@h" + az.getBarHealth(p)
-                        + " f" + az.getBarFood(p)
-                        + " a" + az.getBarArmor(p)
-                        + " o" + az.getBarOxy(p)
-                        + " m" + az.getBarMana(p)
-                        + " s" + az.getBarStamina(p));
+                b.setTitle(this.getConfig().getString("BossBar.Prefix") + PlaceholderAPI.setPlaceholders(p,this.getConfig().getString("BossBar.Title")));
             }
         }, 0, 5L);
     }
@@ -69,12 +65,7 @@ public final class AzBarFix extends JavaPlugin implements Listener{
     }
 
     public void createBossBar(Player p) {
-        BossBar bb = Bukkit.createBossBar("@h" + az.getBarHealth(p)
-                + " f" + az.getBarFood(p)
-                + " a" + az.getBarArmor(p)
-                + " o" + az.getBarOxy(p)
-                + " m" + az.getBarMana(p)
-                + " s" + az.getBarStamina(p),BarColor.WHITE,BarStyle.SOLID);
+        BossBar bb = Bukkit.createBossBar(this.getConfig().getString("BossBar.Prefix") + PlaceholderAPI.setPlaceholders(p,this.getConfig().getString("BossBar.Title")),BarColor.WHITE,BarStyle.SOLID);
         bb.addPlayer(p);
         this.bb.put(p, bb);
         bb.setVisible(true);

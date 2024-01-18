@@ -1,10 +1,10 @@
 Message:
   Wrong-Commands: 'Usage: /azbar reload'
   Reload-Successful: 'Reload Successfully'
-  Console-commands: 'Youre not player'
-  Test: "%azhotbar_maxhp%"
+  NoPermission: 'You not have permission to use command'
 
-#Please Dont change this
+index: 16
+#Please Dont change this!!
 AzHotBar:
   Health:
     Max: "%azhotbar_maxhp%"
@@ -24,3 +24,8 @@ AzHotBar:
   Stamina:
     Max: "%azhotbar_maxstamina%"
     Current: "%azhotbar_currentstamina%"
+
+#MMOCore: %azhotbar_mana% & %azhotbar_stamina%
+BossBar:
+  Prefix: "@"
+  Title: "HP: %azhotbar_hp%"
