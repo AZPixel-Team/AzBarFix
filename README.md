@@ -7,7 +7,3 @@ https://cdn.discordapp.com/attachments/1185442286868373584/1197502861081325588/h
 - HotBar Convert:
 
 ![image](https://github.com/AZPixel-Team/AzBarFix/assets/105216318/24b46aee-0313-42eb-9a4a-cd63605e1d62)
-
-- Tutorial: 
-
-use this plugin to use hotbar
