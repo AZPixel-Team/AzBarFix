@@ -8,23 +8,61 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+
 public class CustomExpansion extends PlaceholderExpansion {
 
-    AzHotBar az = new AzHotBar();
+    private static final int DEFAULT_MAX_VALUE = 20;
+    private static final String IDENTIFIER = "azhotbar";
+    private static final String AUTHOR = "ItzMintDzX";
+    private static final String VERSION = "1.0";
+    private static final AzHotBar az = new AzHotBar();
+    private final Map<String, Function<Player, String>> placeholderHandlers = new HashMap<>();
+
+    public CustomExpansion() {
+        // Basic placeholders
+        addPlaceholder("maxhp", p -> String.valueOf(p.getMaxHealth()));
+        addPlaceholder("currenthp", p -> String.valueOf(p.getHealth()));
+        addPlaceholder("maxfood", p -> String.valueOf(DEFAULT_MAX_VALUE));
+        addPlaceholder("currentfood", p -> String.valueOf(p.getFoodLevel()));
+        addPlaceholder("maxoxy", p -> String.valueOf(p.getMaximumAir()));
+        addPlaceholder("currentoxy", p -> String.valueOf(p.getRemainingAir()));
+        addPlaceholder("maxarmor", p -> String.valueOf(DEFAULT_MAX_VALUE));
+        addPlaceholder("currentarmor", p -> String.valueOf(p.getAttribute(Attribute.GENERIC_ARMOR).getValue()));
+        addPlaceholder("maxmana", p -> PlaceholderAPI.setPlaceholders(p, "%mmocore_stat_max_mana%"));
+        addPlaceholder("currentmana", p -> PlaceholderAPI.setPlaceholders(p, "%mmocore_mana%"));
+        addPlaceholder("maxstamina", p -> PlaceholderAPI.setPlaceholders(p, "%mmocore_stat_max_stamina%"));
+        addPlaceholder("currentstamina", p -> PlaceholderAPI.setPlaceholders(p, "%mmocore_stamina%"));
+
+        // Main expansion placeholders
+
+        addPlaceholder("hp", az::getBarHealth);
+        addPlaceholder("food", az::getBarFood);
+        addPlaceholder("oxy", az::getBarOxy);
+        addPlaceholder("armor", az::getBarArmor);
+        addPlaceholder("mana", az::getBarMana);
+        addPlaceholder("stamina", az::getBarStamina);
+    }
+
+    private void addPlaceholder(String name, Function<Player, String> handler) {
+        placeholderHandlers.put(name, handler);
+    }
 
     @Override
     public @NotNull String getIdentifier() {
-        return "azhotbar";
+        return IDENTIFIER;
     }
 
     @Override
     public @NotNull String getAuthor() {
-        return "ItzMintDzX";
+        return AUTHOR;
     }
 
     @Override
     public @NotNull String getVersion() {
-        return "1.0";
+        return VERSION;
     }
 
     @Override
@@ -39,63 +77,13 @@ public class CustomExpansion extends PlaceholderExpansion {
 
     @Override
     public @Nullable String onPlaceholderRequest(Player player, @NotNull String params) {
-        if (player == null){
+        if (player == null) {
             return "";
         }
-        if (params.equals("maxhp"))
-            return String.valueOf(player.getMaxHealth());
-
-        if (params.equals("currenthp"))
-            return String.valueOf(player.getHealth());
-
-        if (params.equals("maxfood"))
-            return String.valueOf(20);
-
-        if (params.equals("currentfood"))
-            return String.valueOf(player.getFoodLevel());
-
-        if (params.equals("maxoxy"))
-            return String.valueOf(player.getMaximumAir());
-
-        if (params.equals("currentoxy"))
-            return String.valueOf(player.getRemainingAir());
-
-        if (params.equals("maxarmor"))
-            return String.valueOf(20);
-
-        if (params.equals("currentarmor"))
-            return String.valueOf(player.getAttribute(Attribute.GENERIC_ARMOR).getValue());
-
-        if (params.equals("maxmana"))
-            return PlaceholderAPI.setPlaceholders(player,"%mmocore_stat_max_mana%");
-
-        if (params.equals("currentmana"))
-            return PlaceholderAPI.setPlaceholders(player,"%mmocore_mana%");
-
-        if (params.equals("maxstamina"))
-            return PlaceholderAPI.setPlaceholders(player,"%mmocore_stat_max_stamina%");
-
-        if (params.equals("currentstamina"))
-            return PlaceholderAPI.setPlaceholders(player,"%mmocore_stamina%");
-
-        //Main Expansion
-        if (params.equals("hp"))
-            return az.getBarHealth(player);
-
-        if (params.equals("food"))
-            return az.getBarFood(player);
-
-        if (params.equals("oxy"))
-            return az.getBarOxy(player);
-
-        if (params.equals("armor"))
-            return az.getBarArmor(player);
-
-        if (params.equals("mana"))
-            return az.getBarMana(player);
-
-        if (params.equals("stamina"))
-            return az.getBarStamina(player);
+        Function<Player, String> handler = placeholderHandlers.get(params);
+        if (handler != null) {
+            return handler.apply(player);
+        }
         return null;
     }
 }
