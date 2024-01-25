@@ -1,8 +1,8 @@
-# Support
+## Support
 
 https://discord.gg/uRNPQhkENk
 
-# AzHotBar
+## AzHotBar
 
 - Example Pack: 
 
