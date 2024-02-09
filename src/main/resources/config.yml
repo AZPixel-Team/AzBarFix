@@ -28,4 +28,4 @@ AzHotBar:
 #MMOCore: %azhotbar_mana% & %azhotbar_stamina%
 BossBar:
   Prefix: "@"
-  Title: "h%azhotbar_hp% f%azhotbar_food% a%azhotbar_armor% o%azhotbar_oxy%"
+  Title: "h%azhotbar_hp% f%azhotbar_food% a%azhotbar_armor% o%azhotbar_oxy% m%azhotbar_mana% s%azhotbar_stamina%"
